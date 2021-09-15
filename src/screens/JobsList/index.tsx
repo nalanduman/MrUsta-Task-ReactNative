@@ -6,10 +6,12 @@ import { JobsListProps } from '../../types';
 import { JobsType } from './types';
 import { styles } from './styles';
 import job from '../../api/job';
+import moment from 'moment';
 
 const JobsList: React.FC<JobsListProps> = ({ navigation }) => {
     const [jobsData, setJobsData] = useState<JobsType[]>([])
     const [loading, setLoading] = useState(false)
+    const [sort, setSort] = useState<boolean>(false)
 
     useEffect(() => {
         getJobs()
@@ -39,16 +41,42 @@ const JobsList: React.FC<JobsListProps> = ({ navigation }) => {
         navigation.navigate("JobDetails", { id: item.Job.Id })
     }
 
+
+    function sortbyDate() {
+        jobsData.sort(function (a, b) {
+            if (!sort) {
+                return new Date(a.Job.CreatedOnUtc) - new Date(b.Job.CreatedOnUtc)
+            }
+            else {
+                return new Date(b.Job.CreatedOnUtc) - new Date(a.Job.CreatedOnUtc)
+            }
+
+        })
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             {loading ?
                 <>
                     <Text style={styles.header}>Jobs List</Text>
 
+                    <TouchableOpacity onPress={() => {
+                        sortbyDate()
+                        setSort(!sort)
+                    }}>
+                        <Image source={sort ?
+                            require('../../assets/sort-by-attributes.png')
+                            :
+                            require('../../assets/sort-by-attributes-interface.png')
+                        }
+                            style={styles.sortImage} />
+                    </TouchableOpacity>
+
                     <FlatList<JobsType>
                         keyExtractor={(_, index) => index.toString()}
                         data={jobsData}
                         renderItem={renderJobs}
+                        showsVerticalScrollIndicator={false}
                     />
                 </>
                 :

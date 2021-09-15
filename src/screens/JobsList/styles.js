@@ -41,5 +41,13 @@ export const styles = StyleSheet.create({
     },
     itemText: {
         marginVertical: RFValue(3, DEFAULT_HEIGHT_SIZE)
+    },
+    sortImage: {
+        width: RFValue(20, DEFAULT_HEIGHT_SIZE),
+        height: RFValue(20, DEFAULT_HEIGHT_SIZE),
+        resizeMode: 'contain',
+        alignSelf: 'flex-end',
+        marginRight: WIDTH / 15,
+        marginVertical: RFValue(20, DEFAULT_HEIGHT_SIZE)
     }
 })
