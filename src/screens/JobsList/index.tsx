@@ -6,7 +6,6 @@ import { JobsListProps } from '../../types';
 import { JobsType } from './types';
 import { styles } from './styles';
 import job from '../../api/job';
-import moment from 'moment';
 
 const JobsList: React.FC<JobsListProps> = ({ navigation }) => {
     const [jobsData, setJobsData] = useState<JobsType[]>([])

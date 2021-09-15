@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RFValue } from 'react-native-responsive-fontsize';
 import moment from 'moment';
 
-import { DEFAULT_HEIGHT_SIZE, WIDTH } from '../../utils/constant';
 import { JobDetailsProps } from '../../types';
 import { DetailsType } from './types';
 import { styles } from './styles';
